@@ -6,4 +6,21 @@ This project provides a basic level understanding about JSON and JSX. Here I try
  - JSON to JSX
  - JSX to JSON
 
+### Technique of Handling multiple event (Interesting)
+- Handling with function constructor.
+- Handling with the help of eval()
+ Example:
 
+   `handle by creating function on the fly`
+    const opsFunc = new Function(
+      "operator",
+      `return ${inputState.a} ${operator} ${inputState.b}`
+    );
+    setResult(opsFunc(operator));
+
+   //` handle using eval()`
+    const res = eval(`${inputState.a} ${operator} ${inputState.b}`);
+    setResult(res);
+    console.log(res);
+ 
+   `<button onClick={() => handleArithmeticOps("+")}>+</button>`

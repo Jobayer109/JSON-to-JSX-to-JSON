@@ -32,9 +32,9 @@ function App() {
     setResult(opsFunc(operator));
 
     // handle using eval()
-    // const res = eval(`${inputState.a} ${operator} ${inputState.b}`);
-    // setResult(res);
-    // console.log(res);
+    const res = eval(`${inputState.a} ${operator} ${inputState.b}`);
+    setResult(res);
+    console.log(res);
   };
 
   const handleReset = () => {
