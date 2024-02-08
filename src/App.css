@@ -18,6 +18,10 @@ input {
   padding: 7px 16px;
 }
 
+.input__div :first-child {
+  margin-bottom: 0.5rem;
+}
+
 .btn__group {
 }
 

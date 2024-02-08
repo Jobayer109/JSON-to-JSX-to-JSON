@@ -1,14 +1,40 @@
+import { useState } from "react";
 import "./App.css";
 
+const inputObj = {
+  a: 0,
+  b: 0,
+};
+
 function App() {
+  const [inputState, setInputState] = useState(inputObj);
+
+  const handleChange = (e) => {
+    setInputState({
+      ...inputState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div>
       <h2>JSON to JSX to JSON</h2>
       <div>
         <h3 style={{ margin: "1rem" }}>Result: 0</h3>
         <div className="input__div">
-          <input style={{ marginBottom: "5px" }} type="number" /> <br />
-          <input type="number" />
+          <input
+            type="number"
+            name="a"
+            value={inputState.a}
+            onChange={handleChange}
+          />{" "}
+          <br />
+          <input
+            type="number"
+            name="b"
+            value={inputState.b}
+            onChange={handleChange}
+          />
         </div>
       </div>
       <div className="btn-group">
