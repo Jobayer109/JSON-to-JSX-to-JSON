@@ -13,7 +13,7 @@ const inputObj = {
 };
 
 function App() {
-  const [inputState, setInputState] = useState(inputObj);
+  const [inputState, setInputState] = useState({ ...inputObj });
   const [result, setResult] = useState(0);
 
   const handleChange = (e) => {
@@ -32,9 +32,7 @@ function App() {
     setResult(opsFunc(operator));
 
     // handle using eval()
-    const res = eval(`${inputState.a} ${operator} ${inputState.b}`);
-    setResult(res);
-    console.log(res);
+    // setResult(eval(`${inputState.a} ${operator} ${inputState.b}`));
   };
 
   const handleReset = () => {
@@ -46,7 +44,9 @@ function App() {
     <div>
       <h2>JSON to JSX to JSON</h2>
       <div>
-        <h3 style={{ margin: "1rem" }}>Result: {result}</h3>
+        <h3 style={{ margin: "1rem" }}>
+          Result: {result.type === "NaN" ? 0 : result}
+        </h3>
         <div className="input__div">
           <input
             type="number"
