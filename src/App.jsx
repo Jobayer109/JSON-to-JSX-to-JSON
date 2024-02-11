@@ -2,6 +2,7 @@ import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
 import History from "./components/History";
+import Operation from "./components/Operation";
 /*
 TODO: Handle user input fields    -----> Done
 TODO: Handle operations           -----> Done
@@ -9,6 +10,7 @@ TODO: Handle a list of histories  -----> Done
 TODO: Render history list         -----> Done
 TODO: Restore the history         -----> Done
 */
+
 const inputObj = {
   a: 20,
   b: 10,
@@ -71,98 +73,19 @@ function App() {
   return (
     <div>
       <h2>JSON to JSX to JSON</h2>
-      <div>
-        <h3 style={{ margin: "1rem" }}>
-          Result: {result.type === "NaN" ? 0 : result}
-        </h3>
-        <div className="input__div">
-          <input
-            type="number"
-            name="a"
-            value={inputState.a}
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="number"
-            name="b"
-            value={inputState.b}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div className="btn-group">
-        <button onClick={() => handleArithmeticOps("+")}>+</button>
-        <button onClick={() => handleArithmeticOps("-")}>-</button>
-        <button onClick={() => handleArithmeticOps("*")}>*</button>
-        <button onClick={() => handleArithmeticOps("/")}>/</button> <br />
-        <button onClick={handleReset} className="reset">
-          Reset
-        </button>
-      </div>
 
-      {/* History section */}
-
+      <Operation
+        result={result}
+        handleChange={handleChange}
+        handleReset={handleReset}
+        handleArithmeticOps={handleArithmeticOps}
+        inputState={inputState}
+      />
       <History
         histories={histories}
         handleRestore={handleRestore}
         historyRestore={historyRestore}
       />
-
-      {/* <div style={{ marginTop: "1rem" }}>
-        <h3
-          style={{
-            backgroundColor: "green",
-            color: "white",
-            width: "40%",
-            margin: "0 auto",
-            padding: "2px",
-            marginBottom: "1rem",
-          }}
-        >
-          Operation History
-        </h3>
-        {histories.length === 0 ? (
-          <p>
-            <small>No history here</small>
-          </p>
-        ) : (
-          <ul>
-            {histories.map((historyItem) => (
-              <li key={historyItem.id}>
-                <p>
-                  <strong>Operation</strong>: {historyItem.input.a}{" "}
-                  {historyItem.operator} {historyItem.input.b}
-                </p>
-                <p>
-                  <strong>Result</strong>: {historyItem.result}
-                </p>
-                <small>
-                  <strong>Date</strong>: {historyItem.date.toLocaleDateString()}
-                  ;{" "}
-                </small>
-                <small>
-                  <strong>Time</strong>: {historyItem.date.toLocaleTimeString()}
-                </small>{" "}
-                <br />
-                <button
-                  onClick={() => handleRestore(historyItem)}
-                  disabled={
-                    historyRestore !== null &&
-                    historyRestore.id === historyItem.id
-                  }
-                >
-                  Restore
-                </button>
-                <div
-                  className="hr__line"
-                  style={{ marginBottom: "1rem" }}
-                ></div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div> */}
     </div>
   );
 }

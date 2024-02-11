@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const History = ({ histories }, historyRestore, handleRestore) => {
+const History = ({ histories, historyRestore, handleRestore }) => {
   return (
     <div style={{ marginTop: "1rem" }}>
       <h3
