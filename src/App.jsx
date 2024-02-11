@@ -17,6 +17,7 @@ function App() {
   const [inputState, setInputState] = useState({ ...inputObj });
   const [result, setResult] = useState(0);
   const [histories, setHistories] = useState([]);
+  const [historyRestore, setHistoryRestore] = useState(null);
 
   const handleChange = (e) => {
     setInputState({
@@ -45,13 +46,20 @@ function App() {
     // History item list object.
     const historyList = {
       id: shortid.generate(),
-      input: inputState,
+      input: { ...inputState },
       operator,
       result,
       date: new Date(),
     };
 
     setHistories([historyList, ...histories]);
+  };
+
+  // Handle Restore button
+  const handleRestore = (historyItem) => {
+    setInputState({ ...historyItem.input });
+    setResult(historyItem.result);
+    setHistoryRestore(historyItem);
   };
 
   const handleReset = () => {
@@ -91,7 +99,6 @@ function App() {
           Reset
         </button>
       </div>
-      <div className="hr__line"></div>
 
       {/* History section */}
       <div style={{ marginTop: "1rem" }}>
@@ -130,7 +137,15 @@ function App() {
                   <strong>Time</strong>: {historyItem.date.toLocaleTimeString()}
                 </small>{" "}
                 <br />
-                <button>Restore</button>
+                <button
+                  onClick={() => handleRestore(historyItem)}
+                  disabled={
+                    historyRestore !== null &&
+                    historyRestore.id === historyItem.id
+                  }
+                >
+                  Restore
+                </button>
                 <div
                   className="hr__line"
                   style={{ marginBottom: "1rem" }}

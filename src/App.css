@@ -25,23 +25,18 @@ input {
 button {
   padding: 0.2rem 0.5rem;
   margin: 1rem 0.5rem 0 0.5rem;
-  background-color: black;
-  color: white;
   border: 1px solid black;
   border-radius: 3px;
   font-size: 0.9rem;
-}
-
-button:hover {
-  background-color: #575555;
+  font-weight: bold;
 }
 
 .reset {
-  background-color: red;
-  border: none;
+  border: 1px solid gray;
 }
 .reset:hover {
-  background-color: rgb(243, 93, 93);
+  background-color: #e81717;
+  color: white;
 }
 
 .hr__line {
