@@ -1,12 +1,13 @@
 import { useState } from "react";
 import shortid from "shortid";
 import "./App.css";
+import History from "./components/History";
 /*
 TODO: Handle user input fields    -----> Done
 TODO: Handle operations           -----> Done
-TODO: Handle a list of histories  ----->
-TODO: Render history list         ----->
-TODO: Restore the history         ----->
+TODO: Handle a list of histories  -----> Done
+TODO: Render history list         -----> Done
+TODO: Restore the history         -----> Done
 */
 const inputObj = {
   a: 20,
@@ -101,7 +102,14 @@ function App() {
       </div>
 
       {/* History section */}
-      <div style={{ marginTop: "1rem" }}>
+
+      <History
+        histories={histories}
+        handleRestore={handleRestore}
+        historyRestore={historyRestore}
+      />
+
+      {/* <div style={{ marginTop: "1rem" }}>
         <h3
           style={{
             backgroundColor: "green",
@@ -154,7 +162,7 @@ function App() {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
