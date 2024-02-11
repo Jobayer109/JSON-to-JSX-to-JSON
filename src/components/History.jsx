@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const History = ({ histories, historyRestore, handleRestore }) => {
+const History = ({ histories, restoreHistory, handleRestore }) => {
   return (
     <div style={{ marginTop: "1rem" }}>
       <h3
@@ -39,8 +39,8 @@ const History = ({ histories, historyRestore, handleRestore }) => {
               <button
                 onClick={() => handleRestore(historyItem)}
                 disabled={
-                  historyRestore !== null &&
-                  historyRestore.id === historyItem.id
+                  restoreHistory !== null &&
+                  restoreHistory.id === historyItem.id
                 }
               >
                 Restore

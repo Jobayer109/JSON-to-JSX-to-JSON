@@ -13,7 +13,7 @@ const Home = () => {
   const [inputState, setInputState] = useState({ ...inputObj });
   const [result, setResult] = useState(0);
   const [histories, setHistories] = useState([]);
-  const [historyRestore, setHistoryRestore] = useState(null);
+  const [restoreHistory, setRestoreHistory] = useState(null);
 
   const handleChange = (e) => {
     setInputState({
@@ -55,7 +55,7 @@ const Home = () => {
   const handleRestore = (historyItem) => {
     setInputState({ ...historyItem.input });
     setResult(historyItem.result);
-    setHistoryRestore(historyItem);
+    setRestoreHistory(historyItem);
   };
 
   const handleReset = () => {
@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2>JSON to JSX to JSON</h2>
+      <h2>Restore Inputs and Result</h2>
 
       <Operation
         result={result}
@@ -77,7 +77,7 @@ const Home = () => {
       <History
         histories={histories}
         handleRestore={handleRestore}
-        historyRestore={historyRestore}
+        restoreHistory={restoreHistory}
       />
     </div>
   );
