@@ -3,8 +3,8 @@ import shortid from "shortid";
 import "./style.css";
 
 const inputObject = {
-  a: 20,
-  b: 10,
+  a: 0,
+  b: 0,
 };
 
 const PracticeHome = () => {
@@ -20,6 +20,10 @@ const PracticeHome = () => {
   };
 
   const handleOperations = (operator) => {
+    if (!inputState.a || !inputState.b) {
+      alert("Input a valid number");
+      return;
+    }
     const result = eval(`${inputState.a} ${operator} ${inputState.b}`);
     setResult(result);
 
@@ -64,15 +68,19 @@ const PracticeHome = () => {
       <div>
         <h4 className="history__title">Histories</h4>
         <ul>
-          {histories.map((history) => (
-            <li key={history.id}>
+          {histories.map(({ id, inputs, date, operator, result }) => (
+            <li key={id}>
               <p>
-                Operation: {history.inputs.a} {history.operator}
-                {history.inputs.b}
+                Operation:{" "}
+                <strong>
+                  {inputs.a} {operator} {inputs.b}
+                </strong>
               </p>
-              <p>Result: {history.result}</p>
-              <small>Date: {history.date.toLocaleDateString()}</small> <br />
-              <small>Time: {history.date.toLocaleTimeString()}</small> <br />
+              <p>
+                Result: <strong>{result}</strong>
+              </p>
+              <small>Date: {date.toLocaleDateString()}</small> <br />
+              <small>Time: {date.toLocaleTimeString()}</small> <br />
               <button className="restore__btn">Restore</button>
               <div className="hr__line"></div>
             </li>
