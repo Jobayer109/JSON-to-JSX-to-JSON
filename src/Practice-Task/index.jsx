@@ -74,33 +74,38 @@ const PracticeHome = () => {
       </div>
       <div>
         <h4 className="history__title">Histories</h4>
-        <ul>
-          {histories.map((history) => (
-            <li key={history.id}>
-              <p>
-                Operation:{" "}
-                <strong>
-                  {history.inputs.a} {history.operator} {history.inputs.b}
-                </strong>
-              </p>
-              <p>
-                Result: <strong>{history.result}</strong>
-              </p>
-              <small>Date: {history.date.toLocaleDateString()}</small> <br />
-              <small>Time: {history.date.toLocaleTimeString()}</small> <br />
-              <button
-                onClick={() => handleRestore(history)}
-                className="restore__btn"
-                disabled={
-                  restoreHistory !== null && restoreHistory.id === history.id
-                }
-              >
-                Restore
-              </button>
-              <div className="hr__line"></div>
-            </li>
-          ))}
-        </ul>
+
+        {histories.length === 0 ? (
+          <small>There is no history</small>
+        ) : (
+          <ul>
+            {histories.map((history) => (
+              <li key={history.id}>
+                <p>
+                  Operation:{" "}
+                  <strong>
+                    {history.inputs.a} {history.operator} {history.inputs.b}
+                  </strong>
+                </p>
+                <p>
+                  Result: <strong>{history.result}</strong>
+                </p>
+                <small>Date: {history.date.toLocaleDateString()}</small> <br />
+                <small>Time: {history.date.toLocaleTimeString()}</small> <br />
+                <button
+                  onClick={() => handleRestore(history)}
+                  className="restore__btn"
+                  disabled={
+                    restoreHistory !== null && restoreHistory.id === history.id
+                  }
+                >
+                  Restore
+                </button>
+                <div className="hr__line"></div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

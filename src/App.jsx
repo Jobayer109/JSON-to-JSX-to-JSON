@@ -1,10 +1,10 @@
-import Home from "./components/index";
+import PracticeHome from "./Practice-Task/index";
 
 const App = () => {
   return (
     <div>
-      <Home />
-      {/* <PracticeHome /> */}
+      {/* <Home /> */}
+      <PracticeHome />
     </div>
   );
 };
