@@ -1,4 +1,5 @@
 import { useState } from "react";
+import shortid from "shortid";
 import "./style.css";
 
 const inputObject = {
@@ -9,6 +10,7 @@ const inputObject = {
 const PracticeHome = () => {
   const [inputState, setInputState] = useState({ ...inputObject });
   const [result, setResult] = useState(0);
+  const [histories, setHistories] = useState([]);
 
   const handleChange = (e) => {
     setInputState({
@@ -18,7 +20,18 @@ const PracticeHome = () => {
   };
 
   const handleOperations = (operator) => {
-    setResult(eval(`${inputState.a} ${operator} ${inputState.b}`));
+    const result = eval(`${inputState.a} ${operator} ${inputState.b}`);
+    setResult(result);
+
+    const historyList = {
+      id: shortid.generate(),
+      inputs: { ...inputState },
+      operator,
+      result,
+      date: new Date(),
+    };
+
+    setHistories([historyList, ...histories]);
   };
 
   return (
@@ -42,42 +55,28 @@ const PracticeHome = () => {
           />
         </div>
         <div>
-          <button onClick={() => handleOperations("+")} className="btnOps">
-            +
-          </button>
-          <button onClick={() => handleOperations("-")} className="btnOps">
-            -
-          </button>
-          <button onClick={() => handleOperations("*")} className="btnOps">
-            *
-          </button>
-          <button onClick={() => handleOperations("/")} className="btnOps">
-            /
-          </button>
+          <button onClick={() => handleOperations("+")}>+</button>
+          <button onClick={() => handleOperations("-")}>-</button>
+          <button onClick={() => handleOperations("*")}>*</button>
+          <button onClick={() => handleOperations("/")}>/</button>
         </div>
       </div>
       <div>
-        <h4
-          style={{
-            backgroundColor: "green",
-            color: "white",
-            margin: "0 auto",
-            marginTop: "1rem",
-            marginBottom: "1rem",
-            width: "40%",
-          }}
-        >
-          Histories
-        </h4>
+        <h4 className="history__title">Histories</h4>
         <ul>
-          <li>
-            <p>Operation: 10 + 20</p>
-            <p>Result: 30</p>
-            <small>Date: 2/12/2024</small> <br />
-            <small>Time: 8:21:22 PM</small> <br />
-            <button className="restore__btn">Restore</button>
-          </li>
-          <div className="hr__line"></div>
+          {histories.map((history) => (
+            <li key={history.id}>
+              <p>
+                Operation: {history.inputs.a} {history.operator}
+                {history.inputs.b}
+              </p>
+              <p>Result: {history.result}</p>
+              <small>Date: {history.date.toLocaleDateString()}</small> <br />
+              <small>Time: {history.date.toLocaleTimeString()}</small> <br />
+              <button className="restore__btn">Restore</button>
+              <div className="hr__line"></div>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

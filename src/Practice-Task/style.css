@@ -1,4 +1,4 @@
-.btnOps {
+button {
   padding: 0.1rem 0.6rem;
   margin: 0.2rem;
   font-size: 24px;
@@ -10,8 +10,19 @@
   height: 1.5px;
   margin: 0 auto;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .restore__btn {
-  padding: 0.2rem 0.6rem;
+  padding: 2px 4px;
+  font-size: 0.9rem;
+}
+
+.history__title {
+  background-color: green;
+  color: white;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 40%;
 }
