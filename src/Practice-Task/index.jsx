@@ -8,6 +8,7 @@ const inputObject = {
 
 const PracticeHome = () => {
   const [inputState, setInputState] = useState({ ...inputObject });
+  const [result, setResult] = useState(0);
 
   const handleChange = (e) => {
     setInputState({
@@ -16,11 +17,15 @@ const PracticeHome = () => {
     });
   };
 
+  const handleOperations = (operator) => {
+    setResult(eval(`${inputState.a} ${operator} ${inputState.b}`));
+  };
+
   return (
     <div>
       <h1>Practice Restore History</h1>
       <div>
-        <h2>Result: 10</h2>
+        <h2>Result: {result}</h2>
 
         <div>
           <input
@@ -37,10 +42,18 @@ const PracticeHome = () => {
           />
         </div>
         <div>
-          <button className="btnOps">+</button>
-          <button className="btnOps">-</button>
-          <button className="btnOps">*</button>
-          <button className="btnOps">/</button>
+          <button onClick={() => handleOperations("+")} className="btnOps">
+            +
+          </button>
+          <button onClick={() => handleOperations("-")} className="btnOps">
+            -
+          </button>
+          <button onClick={() => handleOperations("*")} className="btnOps">
+            *
+          </button>
+          <button onClick={() => handleOperations("/")} className="btnOps">
+            /
+          </button>
         </div>
       </div>
       <div>
