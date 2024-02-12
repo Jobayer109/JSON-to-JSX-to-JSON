@@ -91,6 +91,9 @@ const PracticeHome = () => {
               <button
                 onClick={() => handleRestore(history)}
                 className="restore__btn"
+                disabled={
+                  restoreHistory !== null && restoreHistory.id === history.id
+                }
               >
                 Restore
               </button>
