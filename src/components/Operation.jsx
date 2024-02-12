@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import InputFields from "./InputFields";
+
 const Operation = ({
   result,
   handleChange,
@@ -13,21 +15,15 @@ const Operation = ({
         <h3 style={{ margin: "1rem" }}>
           Result: {result.type === "NaN" ? 0 : result}
         </h3>
-        <div className="input__div">
-          <input
-            type="number"
-            name="a"
-            value={inputState.a}
-            onChange={handleChange}
-          />{" "}
-          <br />
-          <input
-            type="number"
-            name="b"
-            value={inputState.b}
-            onChange={handleChange}
+
+        {Object.entries(inputState).map((item, i) => (
+          <InputFields
+            key={i}
+            name={item[0]}
+            value={item[1]}
+            handleChange={handleChange}
           />
-        </div>
+        ))}
       </div>
       <div className="btn-group">
         <button onClick={() => handleArithmeticOps("+")}>+</button>
