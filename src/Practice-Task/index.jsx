@@ -11,6 +11,7 @@ const PracticeHome = () => {
   const [inputState, setInputState] = useState({ ...inputObject });
   const [result, setResult] = useState(0);
   const [histories, setHistories] = useState([]);
+  const [restoreHistory, setRestoreHistory] = useState(null);
 
   const handleChange = (e) => {
     setInputState({
@@ -36,6 +37,12 @@ const PracticeHome = () => {
     };
 
     setHistories([historyList, ...histories]);
+  };
+
+  const handleRestore = (history) => {
+    setRestoreHistory(history);
+    setInputState({ ...history.inputs });
+    setResult(history.result);
   };
 
   return (
@@ -68,20 +75,25 @@ const PracticeHome = () => {
       <div>
         <h4 className="history__title">Histories</h4>
         <ul>
-          {histories.map(({ id, inputs, date, operator, result }) => (
-            <li key={id}>
+          {histories.map((history) => (
+            <li key={history.id}>
               <p>
                 Operation:{" "}
                 <strong>
-                  {inputs.a} {operator} {inputs.b}
+                  {history.inputs.a} {history.operator} {history.inputs.b}
                 </strong>
               </p>
               <p>
-                Result: <strong>{result}</strong>
+                Result: <strong>{history.result}</strong>
               </p>
-              <small>Date: {date.toLocaleDateString()}</small> <br />
-              <small>Time: {date.toLocaleTimeString()}</small> <br />
-              <button className="restore__btn">Restore</button>
+              <small>Date: {history.date.toLocaleDateString()}</small> <br />
+              <small>Time: {history.date.toLocaleTimeString()}</small> <br />
+              <button
+                onClick={() => handleRestore(history)}
+                className="restore__btn"
+              >
+                Restore
+              </button>
               <div className="hr__line"></div>
             </li>
           ))}
