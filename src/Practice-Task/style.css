@@ -5,9 +5,13 @@
 }
 
 .hr__line {
-  width: 40%;
-  background-color: black;
-  height: 1px;
+  width: 30%;
+  background-color: #adadad;
+  height: 1.5px;
   margin: 0 auto;
   margin-top: 5px;
+}
+
+.restore__btn {
+  padding: 0.2rem 0.6rem;
 }

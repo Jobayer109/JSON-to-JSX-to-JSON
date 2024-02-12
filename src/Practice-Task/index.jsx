@@ -1,6 +1,21 @@
+import { useState } from "react";
 import "./style.css";
 
+const inputObject = {
+  a: 20,
+  b: 10,
+};
+
 const PracticeHome = () => {
+  const [inputState, setInputState] = useState({ ...inputObject });
+
+  const handleChange = (e) => {
+    setInputState({
+      ...inputState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div>
       <h1>Practice Restore History</h1>
@@ -8,8 +23,18 @@ const PracticeHome = () => {
         <h2>Result: 10</h2>
 
         <div>
-          <input type="number" />
-          <input type="number" />
+          <input
+            type="number"
+            name="a"
+            value={inputState.a}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="b"
+            value={inputState.b}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <button className="btnOps">+</button>
@@ -37,7 +62,7 @@ const PracticeHome = () => {
             <p>Result: 30</p>
             <small>Date: 2/12/2024</small> <br />
             <small>Time: 8:21:22 PM</small> <br />
-            <button>Restore</button>
+            <button className="restore__btn">Restore</button>
           </li>
           <div className="hr__line"></div>
         </ul>
