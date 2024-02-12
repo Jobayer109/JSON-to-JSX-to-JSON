@@ -1,9 +1,10 @@
-import Home from "./components";
+import PracticeHome from "./Practice-Task";
 
 const App = () => {
   return (
     <div>
-      <Home />
+      {/* <Home /> */}
+      <PracticeHome />
     </div>
   );
 };

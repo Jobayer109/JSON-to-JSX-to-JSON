@@ -1,0 +1,13 @@
+.btnOps {
+  padding: 0.1rem 0.6rem;
+  margin: 0.2rem;
+  font-size: 24px;
+}
+
+.hr__line {
+  width: 40%;
+  background-color: black;
+  height: 1px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
